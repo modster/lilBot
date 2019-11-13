@@ -1,25 +1,6 @@
 /*
  *  LilBot:
- *  The simplest little crypto bot ever. 
- *  
- *  Nodejs is required, then run these commands in project folder:
- *  npm init
- *  npm install node-binance-api --save
- *  
- *  Next, get ngrok from https://ngrok.com/. Follow the instructions then copy and paste the url
- *  given into your tradingview.com pro alerts. Note: ngrok free changes the url every time it's 
- *  started.
- *  
- *  To start the tunnel (windows/linux):
- *  ./ngrok http 80 
- * 
- *  To run lilBot:
- *  node app.js
- * 
- *  For testing webhooks go to http://localhost:4040 and select "replay". You can feed your bot any 
- *  value without having to wait for your alerts to be triggered. 
- *  
- *  It's like your dick, small but MIGHTY!!!
+ *  The simplest little nodejs trade bot ever.
  */
 const binance = require( 'node-binance-api' )().options({
   APIKEY: '<your public key>',
@@ -44,7 +25,6 @@ console.log ("Test Mode: ", binance.getOption('test'));
 // Make the EventEmitter that will be triggered by our webhooks
 var eventEmitter = new events.EventEmitter();
 
-// Error handling
 eventEmitter.on('error', (err) => {
   console.error(err);
 })
@@ -88,7 +68,8 @@ eventEmitter.on('sell', () => {
 
 
 /*
- * Thanks to nodejs.org for the following server, lifted straight from thier "Getting Started" tutorial.
+ * Thanks to nodejs.org for the following server, lifted straight from thier "Getting Started" 
+ * tutorial.
  */
 const server = http.createServer((req, res) => {
   //const { headers, method, url } = req;
