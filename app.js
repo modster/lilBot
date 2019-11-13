@@ -19,7 +19,7 @@
  *  For testing webhooks go to http://localhost:4040 and select "replay". You can feed your bot any 
  *  value without having to wait for your alerts to be triggered. 
  *  
- *  Good luck and have fun!
+ *  Small but MIGHTY!!!
  */
 const binance = require( 'node-binance-api' )().options({
   APIKEY: '<your public key>',
