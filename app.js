@@ -8,7 +8,7 @@ const binance = require( 'node-binance-api' )().options({
   useServerTime: true, // <--------------- If you get timestamp errors, synchronize to server time at startup
   recvWindow: 5000, // <------------------ Once you're up and running lower this, 5 seconds is an eternity
   reconnect: true,
-  test: true, // <----------------------- Test Mode is enabled by default. Events return empty objects.
+  test: true, // <------------------------ Test Mode is enabled by default. Events return empty objects.
   verbose: false
 });
 const http = require('http');
