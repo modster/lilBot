@@ -1,0 +1,21 @@
+{
+  "name": "lilbot",
+  "version": "1.0.0",
+  "description": "The simplest trading bot ever. Designed to accept webhooks from tradingview.com charts.  ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "tradingview",
+    "crypto",
+    "trading",
+    "bot"
+  ],
+  "author": "github.com/modster",
+  "license": "MIT",
+  "dependencies": {
+    "node-binance-api": "^0.9.8"
+  }
+}
