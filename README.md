@@ -1,19 +1,30 @@
-Reqirements:
+Requirements:
+
 NodeJS (nodejs.org)
+
 NGROK (ngrok.com)
+
 TradingView Charts (tradingview.com)
 
 
 Install:
+
 mkdir <project-folder>
+  
 cd <project-folder>
+  
 npm init
+
 npm install node-binance-api --save
 
 
+
 Start (windows/linux):
+
 ./ngrok http 80
+
 node app.js
+
 
 For testing webhooks go to http://localhost:4040 and select "replay". You can feed your bot any 
 value you want without having to wait for your alerts to be triggered. 
