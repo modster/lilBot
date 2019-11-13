@@ -1,0 +1,28 @@
+//@version=4
+
+study(shorttitle="BBfib", title="Standard Deviation", overlay=true)
+length = input(15, minval=1)
+src = input(ohlc4, title="Source")
+mult = input(1.12, minval=0.001, maxval=50)
+basis = sma(src, length)
+dev = mult * stdev(src, length)
+upper = basis + dev
+lower = basis - dev
+lowerLow = basis - dev * 1.5
+upperHigh = basis + dev * 1.5
+lowerLowLow = basis - dev * 1.75
+upperHighHigh = basis + dev * 0.5
+plot(basis, color=color.silver, transp=50, style=plot.style_stepline)
+
+p1 = plot(upper, color=color.blue, title='upper')
+p2 = plot(lower, color=color.blue, title="lower")
+p3 = plot(lowerLow, color=color.teal, title='lowerLow')
+p4 = plot(upperHigh, color=color.teal, title='upperHigh')
+p5 = plot(lowerLowLow, color=color.white, title='lowerLowLow')
+p6 = plot(upperHighHigh, color=color.white, title='upperHighHigh')
+
+fill(p1, p2, transp=90)
+fill(p3, p2, transp=94)
+fill(p3, p5, transp=98)
+fill(p1, p4, transp=94)
+fill(p4, p6, transp=98)
