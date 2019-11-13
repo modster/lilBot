@@ -1,4 +1,5 @@
 //@version=4
+// https://github.com/modster/lilBot
 
 study(shorttitle="BBfib", title="Standard Deviation", overlay=true)
 length = input(15, minval=1)
