@@ -22,7 +22,7 @@ const port = 80;
 // Are we in test mode?
 console.log ("Test Mode: ", binance.getOption('test'));
 
-// Make the EventEmitter that will be triggered by our webhooks
+
 var eventEmitter = new events.EventEmitter();
 
 eventEmitter.on('error', (err) => {
@@ -35,10 +35,6 @@ eventEmitter.on('error', (err) => {
 *   For a limit order just add a third parameter, 'price', to marketBuy
 */
 eventEmitter.on('buy', () => {
-  if (error) {
-    console.error(error);
-    return;
-  }
   binance.marketBuy(symbol, quantity, (error, response) => {
     if (error) {
     console.error(error);
@@ -54,9 +50,6 @@ eventEmitter.on('buy', () => {
  *   For a limit order just add a third parameter, 'price', to marketSell
  */
 eventEmitter.on('sell', () => {
-  if (error) {
-    console.error(error);
-  }
   binance.marketSell(symbol, quantity, (error, response) => {
     if (error) {
       console.error(error); 
@@ -82,9 +75,12 @@ const server = http.createServer((req, res) => {
     body = Buffer.concat(body).toString();
     if(body === 'buy') { 
       eventEmitter.emit('buy'); // <----------------------- BUY
-    } else {
+    } 
+    
+    if(body === 'sell') {
       eventEmitter.emit('sell'); // <---------------------- SELL
-    }    
+    }
+
     console.log(body);
     res.statusCode = 200;
     res.end();
