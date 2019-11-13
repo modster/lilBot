@@ -2,16 +2,16 @@
 
 NodeJS (nodejs.org)
 
-NGROK (ngrok.com)
+Ngrok (ngrok.com)
 
 TradingView Charts (tradingview.com)
 
 
 ## Install:
 
-mkdir <project-folder>
+mkdir project-folder
   
-cd <project-folder>
+cd project-folder
   
 npm init
 
