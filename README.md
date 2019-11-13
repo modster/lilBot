@@ -29,6 +29,8 @@ node app.js
 For testing webhooks go to http://localhost:4040 and select "replay". You can feed your bot any 
 value you want without having to wait for your alerts to be triggered. 
 
+To use the example pine script just copy/paste it into the tradingview pine editor.
+
 Yes, you can use variables in tradingview webhooks: https://www.tradingview.com/chart/GFSFmOla/ 
 
 TradingView Basic does not support Webhooks. Currently 
