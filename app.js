@@ -32,7 +32,6 @@ eventEmitter.on('error', (err) => {
 
 /*
 *                  M A R K E T  O R D E R   -   B U Y  
-*   For a limit order just add a third parameter, 'price', to marketBuy
 */
 eventEmitter.on('buy', () => {
   binance.marketBuy(symbol, quantity, (error, response) => {
@@ -47,7 +46,6 @@ eventEmitter.on('buy', () => {
 
 /*
  *                  M A R K E T   O R D E R  -  S E L L
- *   For a limit order just add a third parameter, 'price', to marketSell
  */
 eventEmitter.on('sell', () => {
   binance.marketSell(symbol, quantity, (error, response) => {
