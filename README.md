@@ -1,4 +1,4 @@
-Requirements:
+#Requirements:
 
 NodeJS (nodejs.org)
 
@@ -7,7 +7,7 @@ NGROK (ngrok.com)
 TradingView Charts (tradingview.com)
 
 
-Install:
+#Install:
 
 mkdir <project-folder>
   
@@ -19,7 +19,7 @@ npm install node-binance-api --save
 
 
 
-Start (windows/linux):
+#Start (windows/linux):
 
 ./ngrok http 80
 
