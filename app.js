@@ -1,16 +1,9 @@
 /*
  *  LilBot:
- *  The simplest little nodejs trade bot ever.
+ *  The tiniest little crypto bot ever.
  */
-const binance = require( 'node-binance-api' )().options({
-  APIKEY: '<your public key>',
-  APISECRET: '<your private key>',
-  useServerTime: true, // <--------------- If you get timestamp errors, synchronize to server time at startup
-  recvWindow: 5000, // <------------------ Once you're up and running lower this, 5 seconds is an eternity
-  reconnect: true,
-  test: true, // <------------------------ Test Mode is enabled by default. Events return empty objects.
-  verbose: false
-});
+const binance = require( 'node-binance-api' )().options('./options.json');
+
 const http = require('http');
 const events = require('events');
 

@@ -1,1 +1,10 @@
+# Options file with pub/priv keys
+# options.json
+
+# ngrok.exe
+ngrok.exe
+
+# Personal Modules
+
+# Nodejs Modules
 node_modules

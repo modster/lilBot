@@ -1,0 +1,9 @@
+{
+  "APIKEY": "<your api public key here",
+  "APISECRET": "<your secret key here>",
+  "useServerTime": "true",
+  "recvWindo": "5000",
+  "reconnect": "true",
+  "test": "true",
+  "verbose": "false"
+}
