@@ -5,10 +5,10 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: No test specified\" && exit 1",
-    "lint" : "echo \"Error: No linter specified\" && exit 1"
+    "lint": "echo \"Error: No linter specified\" && exit 1"
   },
   "keywords": [
-    "bitcoin", 
+    "bitcoin",
     "trading bot",
     "node",
     "js",

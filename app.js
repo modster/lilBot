@@ -10,7 +10,7 @@ const events = require('events');
 const symbol = 'BTCUSDT';
 const quantity = 0.025
 const hostname = '127.0.0.1';
-const port = 80;
+const port = 8080;
 
 // Are we in test mode?
 console.log ("Test Mode: ", binance.getOption('test'));
