@@ -29,7 +29,7 @@ Sign up for an account and follow the instructions. Ngrok should be in the same 
 ## TradingView Charts 
 
 To use webhooks we need TradingView **Pro** ($10.95/month).
-[Get a $30 credit by visiting this affiliate link](https://www.tradingview.com/gopro/?share_your_love=Greeffer)
+[Get a $30 credit by visiting this affiliate link](https://www.tradingview.com/gopro/?share_your_love=Greeffer).
 
 ## Create a new bot:
 
