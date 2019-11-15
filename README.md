@@ -7,7 +7,8 @@ Don't you wish you could use TrandingView charts, strategies and indicators to t
 
 ### Clone this repo
 
-[Download](https://github.com/modster/lilBot) Extract it to a convenient location.
+[Download](https://github.com/modster/lilBot) 
+Extract it to a convenient location.
 
 ### Binance Trading Account
 
@@ -53,11 +54,9 @@ node app.js
 
 ## Tips
 
-Ngrok changes your url on startup, so you'll have to copy/paste the new url into your TradingView webhooks. Upgrade to ngrok pro to solve this. Don't forget to create an api key at ngrok.com.
+Ngrok changes your url on startup, so you'll have to copy/paste the new url into your TradingView webhooks. Upgrade to ngrok pro to solve this. Don't forget to create an [auth token](https://ngrok.com/docs#getting-started-authtoken)
 
 For testing webhooks go to http://localhost:4040 and select "replay". You can feed your bot any 
 value you want without having to wait for your alerts to be triggered. 
 
-To use the example pine script just copy/paste it into the tradingview pine editor. You can use any line to trigger a webhook.
-
-Yes, you can pass variables from your chart to your app.js using webhooks: https://www.tradingview.com/chart/?solution=43000531021
+To use the example bollinger ribbon pine script just copy/paste it into the tradingview pine editor at the bottom of your chart. By clicking 'new' a drop down menu displays many default scripts you can easily clone and edit to create your own custom indicators.
