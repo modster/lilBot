@@ -1,20 +1,29 @@
-/*
- *  LilBot:
- *  The tiniest little crypto bot ever.
- */
-const binance = require( 'node-binance-api' )().options('./options.json');
-
+/* W O R K I N G  T I T L E 
+ * TradingView charts and indicators are the best. I prefer them to Binance's 
+ * charts, so I made a bot that uses TradingView indicators, strategies, and
+ * alerts. It's simple enough that even a javascript novice can start using 
+ * it right away. Working Title was designed to be used as a base for other 
+ * projects.
+ * 
+ * Working Title makes extensive use of Jon Eryck's Node-Binance-API project
+ * which can be found here: https://github.com/jaggedsoft/node-binance-api
+ * Thanks Jon!
+ *****************************************************************************/
+const Binance = require( 'node-binance-api' );
 const http = require('http');
 const events = require('events');
 
+
+const binance = new Binance().options('./options.json'); // <---- TODO: tweak recvWindo
+
+
 const symbol = 'BTCUSDT';
-const quantity = 0.025
+const quantity = 0.015;
 const hostname = '127.0.0.1';
 const port = 80;
 
 // Are we in test mode?
 console.log ("Test Mode: ", binance.getOption('test'));
-
 
 var eventEmitter = new events.EventEmitter();
 
@@ -22,39 +31,57 @@ eventEmitter.on('error', (err) => {
   console.error(err);
 })
 
-
-/*
-*                  M A R K E T  O R D E R   -   B U Y  
-*/
 eventEmitter.on('buy', () => {
-  binance.marketBuy(symbol, quantity, (error, response) => {
+
+  binance.balance((error, balances) => {
+
     if (error) {
-    console.error(error);
+      console.error(error);
+      return;
     }
-    console.log(response)
-    console.log("Bought " + quantity + " Order Id: " + response.orderId);
-  });
-})
+    
+    if (balances.USDT.available > 200.00) {
+    
+     /*
+      *                  M A R K E T  O R D E R   -   B U Y  
+      */
+      binance.marketBuy(symbol, quantity, (error, response) => {
+        if (error) {
+        console.error(error);
+        }
+        console.log(response)
+        console.log("Bought " + quantity + " Order Id: " + response.orderId);
+      }); // marketBuy 
+    } // if
+  }) // binance.balance
+}) // eventemitter.on('buy')
 
 
-/*
- *                  M A R K E T   O R D E R  -  S E L L
- */
 eventEmitter.on('sell', () => {
-  binance.marketSell(symbol, quantity, (error, response) => {
+
+  binance.balance((error, balances) => {
+
     if (error) {
-      console.error(error); 
+      console.error(error);
+      return false;
     }
-    console.log(response)
-    console.log('Sold ' + quantity + ' Order Id: ', + response.orderId);
-  });
-})
+    
+    if ( balances.BTC.available > quantity ) {   
+      /*
+      *                  M A R K E T   O R D E R  -  S E L L
+      */
+      binance.marketSell(symbol, quantity, (error, response) => {
+        if (error) {
+          console.error(error); 
+        }
+        console.log(response)
+        console.log('Sold ' + quantity + ' Order Id: ', + response.orderId);
+      }); // marketSell 
+    } // if
+  }) // binance.balance
+}) // end eventemitter.on('sell')
 
 
-/*
- * Thanks to nodejs.org for the following server, lifted straight from thier "Getting Started" 
- * tutorial.
- */
 const server = http.createServer((req, res) => {
   //const { headers, method, url } = req;
   let body = [];
@@ -64,6 +91,7 @@ const server = http.createServer((req, res) => {
     body.push(chunk);
   }).on('end', () => {
     body = Buffer.concat(body).toString();
+
     if(body === 'buy') { 
       eventEmitter.emit('buy'); // <----------------------- BUY
     } 
@@ -78,6 +106,7 @@ const server = http.createServer((req, res) => {
     }
   )}
 );
+
 
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);

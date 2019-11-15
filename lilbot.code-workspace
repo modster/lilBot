@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"terminal.integrated.drawBoldTextInBrightColors": false,
+		"workbench.colorTheme": "Visual Studio Dark"
+	}
+}

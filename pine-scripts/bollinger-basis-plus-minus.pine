@@ -1,0 +1,22 @@
+//@version=4
+study(shorttitle="BB", title="Bollinger Bands", overlay=true)
+length = input(20, minval=1)
+src = input(close, title="Source")
+mult = input(3, minval=0.001, maxval=50)
+basis = sma(src, length)
+dev = mult * stdev(src, length)
+
+fee = basis * 0.0007
+
+p0 = plot(basis, color=color.white, title = "basis")
+p1fee = plot(basis + fee , color=color.green, title = "basis + fee")
+p2fee = plot(basis - fee, color=color.red, title = "basis - fee")
+
+sell0 = basis + dev * 0.9
+buy0 = basis - dev * 0.9
+p1 = plot(sell0, color=color.green, title ="sell0")
+p2 = plot(buy0, color=color.red, title = "buy0")
+
+
+fill(p1, p1fee, color=color.yellow)
+fill(p2, p2fee, color=color.blue)
