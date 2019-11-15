@@ -54,7 +54,7 @@ node app.js
 
 ## Tips
 
-Ngrok changes your url on startup, so you'll have to copy/paste the new url into your TradingView webhooks. Upgrade to ngrok pro to solve this. Don't forget to create an [auth token](https://ngrok.com/docs#getting-started-authtoken)
+Ngrok changes your url on startup, so you'll have to copy/paste the new url into your TradingView webhooks. Upgrade to ngrok pro to solve this. Don't forget to create an [auth token](https://ngrok.com/docs#getting-started-authtoken).
 
 For testing webhooks go to http://localhost:4040 and select "replay". You can feed your bot any 
 value you want without having to wait for your alerts to be triggered. 
