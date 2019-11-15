@@ -12,8 +12,8 @@ Extract it to a convenient location.
 
 ### Binance Trading Account
 
-Log in and create a new key. Beginners should disable withrawls and restrict access to your device's external ip. 
 [API key](https://www.binance.com/en/support/articles/360002502072)
+Log in and create a new api key. Beginners should disable withrawls and restrict access to your device's external ip. Copy/paste your info into options.json.
 
 ### NodeJS 
 
@@ -21,15 +21,15 @@ Log in and create a new key. Beginners should disable withrawls and restrict acc
 
 ### Ngrok  
 
-Sign up for an account and follow the instructions. Ngrok should be in the same folder as app.js.
 [Download](https://ngrok.com/download)
+Sign up for an account and follow the instructions. Ngrok should be in the same folder as app.js.
 
 **Important:** The ngrok.exe must reside in the same folder as app.js.
 
 ## TradingView Charts 
 
-This is the only resource that isn't free. To use webhooks we need TradingView **Pro** ($10.95/month).
-[Get a $30 credit by visiting this affiliate link](https://www.tradingview.com/gopro/?share_your_love=Greeffer)
+To use webhooks we need TradingView **Pro** ($10.95/month).
+[Get a $30 credit by visiting this affiliate link](https://www.tradingview.com/gopro/?share_your_love=Greeffer).
 
 ## Create a new bot:
 
@@ -54,7 +54,7 @@ node app.js
 
 ## Tips
 
-Ngrok changes your url on startup, so you'll have to copy/paste the new url into your TradingView webhooks. Upgrade to ngrok pro to solve this. Don't forget to create an [auth token](https://ngrok.com/docs#getting-started-authtoken)
+Ngrok changes your url on startup, so you'll have to copy/paste the new url into your TradingView webhooks. Upgrade to ngrok pro to solve this. Don't forget to create an [auth token](https://ngrok.com/docs#getting-started-authtoken).
 
 For testing webhooks go to http://localhost:4040 and select "replay". You can feed your bot any 
 value you want without having to wait for your alerts to be triggered. 
