@@ -1,19 +1,23 @@
 {
   "name": "lilbot",
-  "version": "1.0.0",
-  "description": "The simplest trading bot ever. Designed to accept webhooks from tradingview.com charts.  ",
+  "version": "1.0.1",
+  "description": "Use TradingView Chart Alerts to buy/sell crypto.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: No test specified\" && exit 1",
+    "lint" : "echo \"Error: No linter specified\" && exit 1"
   },
   "keywords": [
-    "nodejs",
+    "bitcoin", 
+    "trading bot",
+    "node",
+    "js",
     "tradingview",
-    "crypto",
-    "trading",
-    "bot"
+    "binance",
+    "webhooks",
+    "ngrok"
   ],
-  "author": "github.com/modster",
+  "author": "EM Greeff",
   "license": "MIT",
   "dependencies": {
     "node-binance-api": "^0.9.8"
