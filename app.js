@@ -70,22 +70,26 @@ eventEmitter.on('sell', () => {
     }
   
     else {
-      let btcBalance = balances.BTC.available;
-      binance.marketSell(symbol, btcBalance);
+      
+      binance.marketSell(symbol, balances.BTC.available);
     }
+    console.log(balances.BTC.available);
   }) // binance.balance
 }) // end eventemitter.on('sell')
 
 //  S T O P
 eventEmitter.on('stop', () => {
-
+  
   binance.balance((error, balances) => {
-
     if ( error ) return console.error(error);
 
-    let btcBalance = balances.BTC.available;
-    binance.marketSell(symbol, btcBalance);
+    if( balances.BTC.available > 0) {
+      btcBalance = parseFloat(balances.BTC.available);
+      console.log(btcBalance);
+      binance.marketSell(symbol, btcBalance);
+    }
   }) // binance.balance
+  
 }) // end eventemitter.on('stop')
 
 const server = http.createServer((req, res) => {
