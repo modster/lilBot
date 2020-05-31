@@ -12,10 +12,21 @@
 const Binance = require( 'node-binance-api' );
 const http = require('http');
 const events = require('events');
+require('dotenv').config();
 
+// B i n a n c e - N o d e - A P I   O p t i o n s
+const binance = new Binance().options({
+  APIKEY: process.env.BINANCE_APIKEY,
+  APISECRET: process.env.BINANCE_SECRET,
+  useServerTime: true,
+  recvWindow: 1500, // Set a higher recvWindow to increase response timeout
+  verbose: false, // Add extra output when subscribing to WebSockets, etc
+  test: true,
+  reconnect: true
+  // to do: enable Logging
+});
 
 const binance = new Binance().options('./options.json'); // <---- TODO: tweak recvWindo
-
 
 const symbol = 'BTCUSDT';
 const quantity = 0.015;
@@ -40,11 +51,11 @@ eventEmitter.on('buy', () => {
       return;
     }
     
-    if (balances.USDT.available > 200.00) {
+    if (balances.USDT.available > 20.00) {
     
-     /*
-      *                  M A R K E T  O R D E R   -   B U Y  
-      */
+    /*
+     *                  M A R K E T  O R D E R   -   B U Y  
+     */
       binance.marketBuy(symbol, quantity, (error, response) => {
         if (error) {
         console.error(error);
@@ -55,7 +66,6 @@ eventEmitter.on('buy', () => {
     } // if
   }) // binance.balance
 }) // eventemitter.on('buy')
-
 
 eventEmitter.on('sell', () => {
 
@@ -81,7 +91,6 @@ eventEmitter.on('sell', () => {
   }) // binance.balance
 }) // end eventemitter.on('sell')
 
-
 const server = http.createServer((req, res) => {
   //const { headers, method, url } = req;
   let body = [];
@@ -106,7 +115,6 @@ const server = http.createServer((req, res) => {
     }
   )}
 );
-
 
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
