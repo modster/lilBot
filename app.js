@@ -40,7 +40,7 @@ eventEmitter.on('buy', () => {
       return;
     }
     
-    if (balances.USDT.available > 200.00) {
+    if (balances.USDT.available > 15.00) {
     
      /*
       *                  M A R K E T  O R D E R   -   B U Y  
