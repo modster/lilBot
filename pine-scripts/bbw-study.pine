@@ -1,0 +1,66 @@
+// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © Greeffer
+// github.com/modster or modster.github.io
+// Trading BTCUSDT 15 minute time frame on Binance Spot Exchange
+
+//@version=4
+
+// S t u d y
+study('BBW/RSI/15 Study', 'BBW/RSI/15 Study', overlay=true, precision=4)
+
+// V a r i a b l e s
+source = input(close, title="RSI Source")
+sell = input(title="Sell", defval=75, minval=0, maxval=100)
+buy = input(title="Buy", defval=25, minval=0, maxval=100)
+length = input(title="Length", defval=14, minval=1, maxval=500)
+volMA = sma(volume,7)
+showMA = input(true)
+
+// V o l u m e
+barColorsOnPrevClose = input(title="Color bars based on previous close", type=input.bool, defval=false)
+palette = barColorsOnPrevClose ? close[1] > close ? color.red : color.green : open > close ? color.red : color.green
+plot(volume, color = palette, style=plot.style_columns, title="Volume", display=display.none)
+plot(showMA ? sma(volume,20) : na, style=plot.style_area, color=color.blue, display=display.none)
+
+// S t o c h   R S I 
+smoothK = input(3, minval=1) // <-----------------------------------------------
+smoothD = input(3, minval=1) // <-----------------------------------------------
+lengthRSI = input(14, minval=1)
+lengthStoch = input(14, minval=1)
+
+rsi1 = rsi(source, lengthRSI)
+k = sma(stoch(rsi1, rsi1, rsi1, lengthStoch), smoothK)
+d = sma(k, smoothD)
+//plot(k, color=color.blue)
+//plot(d, color=color.orange)
+//h0 = hline(80)
+//h1 = hline(20)
+//fill(h0, h1, color=color.purple, transp=80, display=display.none)
+
+// B o l l i n g e r   B a n d s 
+[middle, upper, lower] = bb(source, length, 2.2)
+plot(middle, title="middle", color=color.red, linewidth=2, style=plot.style_line, transp=70)
+plot(upper, title="upper", color=color.green, linewidth=2, style=plot.style_line, transp=70)
+plot(lower, title="lower", color=color.green,  linewidth=2, style=plot.style_line, transp=70)
+
+// B o l l i n g e r  B a n d  W i d t h 
+bbW = bbw(source, length, 2.2)
+plot(bbW, title="bbWidth", color=color.orange, display=display.none)
+
+//  C o n d i t i o n s
+buyCondition = bbW<0.008 and volume>=volMA
+//buyCondition = crossover(k, d) and k<25
+//buyCondition = K>D and rsi<60 and bbw < 0.022
+sellCondition = crossover(close, upper)
+stopCondition = crossunder(source, middle) and bbW > 0.05
+
+// B U Y
+alertcondition(buyCondition, title='Buy', message='{"direction":"buy","ticker":"{{ticker}}","frame":"1minute","close":"{{close}}","time":"{{time}}"}')
+//alertcondition(crossunder(myRsi, buy) and crossunder(close, lower), title='Buy', message='{"direction":"buy","ticker":"{{ticker}}","frame":"1minute","close":"{{close}}","time":"{{time}}"}')
+
+// S E L L
+alertcondition(sellCondition, title='Sell', message='{"direction":"sell","ticker":"{{ticker}}","frame":"1minute","close":"{{close}}","time":"{{time}}"}')
+//alertcondition(crossover(myRsi, sell) and crossover(close, upper), title='Sell', message='{"direction":"sell","ticker":"{{ticker}}","frame":"1minute","close":"{{close}}","time":"{{time}}"}')
+
+// S T O P
+alertcondition(stopCondition, title='Stop', message='stop')

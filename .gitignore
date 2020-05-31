@@ -1,10 +1,11 @@
-# Options file with pub/priv keys
-# options.json
-
 # ngrok.exe
 ngrok.exe
 
-# Personal Modules
+# Binance Keys
+.env
 
 # Nodejs Modules
 node_modules
+
+# Personal
+test.js
