@@ -6,3 +6,6 @@ ngrok.exe
 
 # Nodejs Modules
 node_modules
+
+# Personal
+test.js
