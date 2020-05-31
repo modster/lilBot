@@ -20,6 +20,7 @@
   "author": "EM Greeff",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "node-binance-api": "^0.9.8",
     "nodemon": "^2.0.4"
   }
