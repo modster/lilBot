@@ -45,7 +45,7 @@ eventEmitter.on('buy', () => {
   binance.balance((error, balances) => {
     if ( error ) return console.error(error);
     const usdtBal = balances.USDT.available;
-    if (balances.USDT.available > 20.00) {
+    if (balances.USDT.available > 10.00) {
       binance.bookTickers('BTCUSDT', (error, ticker) => {
         tickAsk = ticker.askPrice;
         let qty = usdtBal/tickAsk;
