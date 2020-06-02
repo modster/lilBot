@@ -44,7 +44,6 @@ eventEmitter.on('buy', () => {
 
   binance.balance((error, balances) => {
     if ( error ) return console.error(error);
-    const usdtBal = balances.USDT.available;
     if (balances.USDT.available > 10.00) {
       binance.bookTickers('BTCUSDT', (error, ticker) => {
         tickAsk = ticker.askPrice;
@@ -55,7 +54,7 @@ eventEmitter.on('buy', () => {
       });
     }
     else {
-      console.log('Balance < 20.00')
+      console.log('Balance < 10.00')
     }
   }) // binance.balance
 }) // eventemitter.on('buy')
@@ -67,11 +66,6 @@ eventEmitter.on('sell', () => {
     
     if ( balances.BTC.available > quantity ) {
       binance.marketSell(symbol, quantity);
-    }
-  
-    else {
-      
-      binance.marketSell(symbol, balances.BTC.available);
     }
     console.log(balances.BTC.available);
   }) // binance.balance
