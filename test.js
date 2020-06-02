@@ -1,6 +1,6 @@
+const Binance = require( 'node-binance-api' );
 const http = require('http');
 const events = require('events');
-const Binance = require( 'node-binance-api' );
 require('dotenv').config();
 
 // B i n a n c e - N o d e - A P I   O p t i o n s
@@ -8,28 +8,31 @@ const binance = new Binance().options({
   APIKEY: process.env.BINANCE_APIKEY,
   APISECRET: process.env.BINANCE_SECRET,
   useServerTime: true,
-  recvWindow: 2500, // Set a higher recvWindow to increase response timeout
+  recvWindow: 2000, // Set a higher recvWindow to increase response timeout
   verbose: false, // Add extra output when subscribing to WebSockets, etc
-  test: true,
+  test: false,
   reconnect: true
   // to do: enable Logging
 });
 
 const symbol = 'BTCUSDT';
-const quantity = 0.0016;
+const hostname = '127.0.0.1';
+const port = 80;
+
+// Are we in test mode?
+console.log ("Test Mode: ", binance.getOption('test'));
 
 binance.balance((error, balances) => {
-  if ( error ) return console.error(error);
-  const usdtBal = balances.USDT.available;
-  if (balances.USDT.available > 20.00) {
-    binance.bookTickers('BTCUSDT', (error, ticker) => {
-      tickAsk = ticker.askPrice;
-      let qty = usdtBal/tickAsk;
-      console.log(tickAsk, usdtBal, qty);
-      binance.marketBuy(symbol, qty);
-    });
+  if ( error ) {
+    console.error(error);
+    return;
+  }
+  //console.log("balances()", balances);
+  console.log("BTC balance: ", balances.BTC.available);
+  if( balances.BTC.available ) {
+    binance.marketSell('BTCUSDT', balances.BTCavailable)
   }
   else {
-    console.log('Balance < 20.00')
+    console.log('BTC Balance = 0')
   }
-}) // binance.balance
+})
